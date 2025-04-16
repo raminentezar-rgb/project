@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1 class="mb-4">Your Email Signature</h1>
+    <div class="signature-card">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif;">
+            <tr>
+                {% if image_url %}
+                    <td style="padding-right:20px">
+                        <img src="{{ image_url }}" alt="Profile Image" class="signature-image" style="border-radius: 50%; width: 80px; height: 80px; margin-right: 7px;">
+                        <div style="width: 5px; height: 80px; background:#75c8fd; float: right"></div>
+                    </td>
+                {% endif %}
+                <td style="vertical-align: top;">
+                    <p style="margin: 0; font-size: 16px; font-weight: bold; color: #333;">{{ name }}</p>
+                    <p style="margin: 0; font-size: 14px; font-weight: bold; color: #555;">{{ title }}</p>
+                    <p style="margin: 10px 0 0 0; font-size: 12px;">
+                        <strong>Email:</strong> <a href="mailto:{{ email }}" style="color: #1a73e8; text-decoration: none;">{{ email }}</a>
+                    </p>
+                    {% if phone %}
+                    <p style="margin: 3px 0 0 0; font-size: 12px;">
+                        <strong>Phone:</strong> <a href="tel:{{ phone }}" style="color: #1a73e8; text-decoration: none;">{{ phone }}</a>
+                    </p>
+                    {% endif %}
+                    {% if website %}
+                    <p style="margin: 3px 0 0 0; font-size: 12px;">
+                        <strong>Website:</strong> <a href="{{ website }}" style="color: #1a73e8; text-decoration: none;">{{ website }}</a>
+                    </p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <a href="{% url 'generate_signature' %}" class="btn btn-secondary">Generate Another</a>
+{% endblock %}

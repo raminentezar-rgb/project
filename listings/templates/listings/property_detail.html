@@ -1,0 +1,37 @@
+{% extends "test.html" %}
+{% block content %}
+<div class="container my-5">
+    <a href="{% url 'property_list'%}" class="btn btn-secondary mb-3">Back</a>
+    {% comment %} <img src="{{ property.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ property.title }}"> {% endcomment %}
+    {% if property.images.all %}
+    <div class="row">
+        {% for img in property.images.all %}
+            <div class="col-md-4 mb-3">
+                <img src="{{ img.image.url }}" class="img-fluid rounded" alt="{{ img.caption }}">
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <h1>{{ property.title }}</h1>
+    <p><strong>Location:</strong> {{ property.location }}</p>
+    <p><strong>Type:</strong> {{ property.get_type_display }}</p>
+    <p><strong>Price:</strong> ${{ property.price }}</p>
+    <p>{{ property.description }}</p>
+    <hr>
+    <h4>Request a Visit</h4>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+</form>
+</div>
+
+
+{% endblock content %}
