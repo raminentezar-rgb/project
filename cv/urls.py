@@ -19,6 +19,7 @@ from django.urls import path,include
 from . import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
@@ -30,5 +31,7 @@ urlpatterns = [
     path('listings/', include('listings.urls')),
     path('agency/', include('agency.urls')),
     path('store/', include('store.urls')),
+    path('qr_generator/', include('qr_generator.urls')),
+   
     
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

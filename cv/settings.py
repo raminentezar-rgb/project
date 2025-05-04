@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'listings',
     'agency',
     'store',
+    'qr_generator',
+    
     
 ]
 
@@ -155,5 +157,6 @@ EMAIL_HOST_PASSWORD = '113613020309964'
 
 
 
-
 django_heroku.settings(locals())
+
+
